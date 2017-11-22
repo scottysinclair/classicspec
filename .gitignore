@@ -2,4 +2,4 @@
 /.settings/*
 /.project
 /target/*
-/target/
+test.log
