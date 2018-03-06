@@ -19,11 +19,19 @@ public class ClassicSpec extends CommonDefaultsPlatformSpec {
       GenerateModels.execute(ClassicSpec.class);
   }
 
+  /**
+   * define the spec with it's namespace
+   */
   public ClassicSpec() {
      super("scott.classicspec");
   }
 
 
+  /**
+   * Define an enumeration callled ClientType
+   * @author scott
+   *
+   */
   @Enumeration(JdbcType.INT)
   public static class ClientTyp {
       public static int INTERNAL = 1;

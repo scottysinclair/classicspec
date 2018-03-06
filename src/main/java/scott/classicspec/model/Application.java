@@ -6,7 +6,7 @@ import scott.barleydb.api.stream.QueryEntityInputStream;
 import scott.barleydb.api.query.QueryObject;
 import scott.barleydb.api.stream.EntityStreamException;
 import scott.barleydb.api.exception.execution.SortServiceProviderException;
-import scott.barleydb.api.exception.execution.query.SortQueryException;
+import scott.barleydb.api.exception.execution.query.BarleyDBQueryException;
 
 import scott.barleydb.api.core.entity.Entity;
 import scott.barleydb.api.core.entity.ValueNode;
@@ -58,12 +58,12 @@ public class Application extends AbstractCustomEntityProxy {
   public List<Service> getServices() {
     return super.getListProxy(services.toManyNode);
   }
-  public ObjectInputStream<Service> streamServices() throws SortServiceProviderException, SortQueryException, EntityStreamException {
+  public ObjectInputStream<Service> streamServices() throws SortServiceProviderException, BarleyDBQueryException, EntityStreamException {
     final QueryEntityInputStream in = services.toManyNode.stream();
     return new ObjectInputStream<>(in);
   }
 
-  public ObjectInputStream<Service> streamServices(QueryObject<Service> query) throws SortServiceProviderException, SortQueryException, EntityStreamException {
+  public ObjectInputStream<Service> streamServices(QueryObject<Service> query) throws SortServiceProviderException, BarleyDBQueryException, EntityStreamException {
     final QueryEntityInputStream in = services.toManyNode.stream(query);
     return new ObjectInputStream<>(in);
   }

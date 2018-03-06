@@ -11,7 +11,7 @@ import scott.barleydb.api.core.entity.EntityContext;
 import scott.barleydb.api.dto.DtoConverter;
 import scott.barleydb.api.exception.execution.SortServiceProviderException;
 import scott.barleydb.api.exception.execution.persist.SortPersistException;
-import scott.barleydb.api.exception.execution.query.SortQueryException;
+import scott.barleydb.api.exception.execution.query.BarleyDBQueryException;
 import scott.barleydb.api.persist.PersistRequest;
 import scott.barleydb.api.stream.EntityStreamException;
 import scott.barleydb.api.stream.ObjectInputStream;
@@ -97,7 +97,7 @@ public class ClassicSpecTest {
   }
 
   @Test
-  public void testSaveDataUsingDtosAndDaoLayer() throws SortServiceProviderException, SortPersistException, SortQueryException {
+  public void testSaveDataUsingDtosAndDaoLayer() throws SortServiceProviderException, SortPersistException, BarleyDBQueryException {
 
     TestDao dao = new TestDao(env);
 
@@ -138,7 +138,7 @@ public class ClassicSpecTest {
   }
 
   @Test
-  public void testLoadingUsingDtosAndServices() throws SortServiceProviderException, SortPersistException, SortQueryException {
+  public void testLoadingUsingDtosAndServices() throws SortServiceProviderException, SortPersistException, BarleyDBQueryException {
      testSaveDataUsingDtosAndDaoLayer();
      System.out.println("----------------------------------------------------------------------------------");
 
@@ -156,7 +156,7 @@ public class ClassicSpecTest {
   }
 
   @Test
-  public void testStreamingObjectGraph() throws SortServiceProviderException, SortQueryException, EntityStreamException, SortPersistException {
+  public void testStreamingObjectGraph() throws SortServiceProviderException, BarleyDBQueryException, EntityStreamException, SortPersistException {
     testSaveDataUsingDtosAndDaoLayer();
     System.out.println("----------------------------------------------------------------------------------");
 
@@ -191,7 +191,7 @@ public class ClassicSpecTest {
 
 
   @Test
-  public void testNestedStreaming() throws SortServiceProviderException, SortQueryException, EntityStreamException, SortPersistException {
+  public void testNestedStreaming() throws SortServiceProviderException, BarleyDBQueryException, EntityStreamException, SortPersistException {
     testSaveDataUsingDtosAndDaoLayer();
     System.out.println("----------------------------------------------------------------------------------");
     EntityContext ctx = new ClassicspecEntityContext(env);
@@ -237,7 +237,7 @@ class TestDao {
     this.env = env;
   }
 
-  public List<ApplicationDto> loadApplicationsAndServices() throws SortServiceProviderException, SortQueryException {
+  public List<ApplicationDto> loadApplicationsAndServices() throws SortServiceProviderException, BarleyDBQueryException {
     /*
      * create a ctx
      */
@@ -263,7 +263,7 @@ class TestDao {
     return conv.getDtos(applications, ApplicationDto.class);
   }
 
-  public void save(ClientDto client) throws SortServiceProviderException, SortQueryException, SortPersistException {
+  public void save(ClientDto client) throws SortServiceProviderException, BarleyDBQueryException, SortPersistException {
     /*
      * create a ctx
      */
@@ -291,7 +291,7 @@ class TestDao {
   }
 
 
-  public void save(ApplicationDto app) throws SortServiceProviderException, SortPersistException, SortQueryException {
+  public void save(ApplicationDto app) throws SortServiceProviderException, SortPersistException, BarleyDBQueryException {
     EntityContext ctx = new ClassicspecEntityContext(env);
     ctx.setAutocommit(false);
     ctx.setAllowGarbageCollection(false);
